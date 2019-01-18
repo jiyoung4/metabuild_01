@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Built-By: meta
+Class-Path: dependency-jars/spring-context-4.3.18.RELEASE.jar dependen
+ cy-jars/spring-aop-4.3.18.RELEASE.jar dependency-jars/spring-beans-4.
+ 3.18.RELEASE.jar dependency-jars/spring-core-4.3.18.RELEASE.jar depen
+ dency-jars/commons-logging-1.2.jar dependency-jars/spring-expression-
+ 4.3.18.RELEASE.jar dependency-jars/spring-tx-3.2.3.RELEASE.jar depend
+ ency-jars/aopalliance-1.0.jar dependency-jars/slf4j-api-1.7.5.jar dep
+ endency-jars/logback-classic-1.0.13.jar dependency-jars/logback-core-
+ 1.0.13.jar dependency-jars/hibernate-entitymanager-4.2.1.Final.jar de
+ pendency-jars/jboss-logging-3.1.0.GA.jar dependency-jars/hibernate-co
+ re-4.2.1.Final.jar dependency-jars/antlr-2.7.7.jar dependency-jars/do
+ m4j-1.6.1.jar dependency-jars/jboss-transaction-api_1.1_spec-1.0.1.Fi
+ nal.jar dependency-jars/hibernate-jpa-2.0-api-1.0.1.Final.jar depende
+ ncy-jars/javassist-3.15.0-GA.jar dependency-jars/hibernate-commons-an
+ notations-4.0.1.Final.jar
+Build-Jdk: 1.8.0_181
+Created-By: Maven Integration for Eclipse
+Main-Class: next.com.mainA
+

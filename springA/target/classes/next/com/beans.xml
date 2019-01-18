@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="FromConsole" class="next.com.FromConsole"/>	
+	<bean id="FromFile" class="next.com.FromFile">
+		<property name="filepath" value="C:\\OOP_IO_txt\\test.txt"/>
+	</bean>	
+	<bean id="ToConsole" class="next.com.ToConsole"/>	
+	<bean id="ToFile" class="next.com.ToFile">
+		<property name="filepath" value="C:\\OOP_IO_txt\\write.txt"/>
+	</bean>	
+	<bean id="CountLetter" class="next.com.CountLetter"/>
+	
+	
+	<bean id="inout" class="next.com.Inout">
+		<constructor-arg type="next.com.Input" ref="FromConsole"/>
+		<constructor-arg type="next.com.Count" ref="CountLetter"/>
+		<constructor-arg type="next.com.Output" ref="ToConsole"/>
+	</bean>
+	
+</beans>

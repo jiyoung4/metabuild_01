@@ -1,5 +1,7 @@
 package next.com;
 
+import java.util.Scanner;
+
 public class LinkedList {
 	
 	// 구성요소: Node(Data+Pointer) (Head, Tail, Node)
@@ -10,7 +12,7 @@ public class LinkedList {
 		
 		// Node의 Data
 		private Object data;
-		// Node의 다음 노드 Pointer
+		// Node의 다음 노드 
 		private Node next;
 		
 		public Node(Object inData) {
@@ -30,7 +32,7 @@ public class LinkedList {
 		String allD = "[";
 		
 		while(temp.next !=null) {
-			allD += temp.data + ",";
+			allD += temp.data +",";
 			temp = temp.next;
 		}
 		
@@ -85,6 +87,33 @@ public class LinkedList {
 	}
 	
 	public void MiddelAdd(Object insertD) {
+		
+		int num = 0;
+		Node temp1;
+		Node temp2;
+		
+		// 값을 몇번째에 넣은건지 입력받기
+		System.out.println("몇번째에 넣겠습니까?");
+		Scanner scan = new Scanner(System.in);
+		num = scan.nextInt();
+		
+		temp1 = head;
+		
+		// 입력한 값까지 head부터 찾아감
+		while (--num != 0) {
+			// 선택한 값의 직전 Node
+			temp1 = temp1.next;
+		}
+			// 선택한 값의 Node
+			temp2 = temp1.next;
+			
+			// 새로 입력할 Node 생성
+			Node newNode = new Node(insertD);
+			// 직전 Node에서 새로운 Node로 연결
+			temp1.next = newNode;
+			// 새로운 Node의 next는 선택한 값의 Node
+			newNode.next = temp2;
+			
 		
 	}
 	

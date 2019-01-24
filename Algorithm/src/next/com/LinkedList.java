@@ -86,6 +86,7 @@ public class LinkedList {
 		
 	}
 	
+	// 중간 삽입
 	public void MiddelAdd(Object insertD) {
 		
 		int num = 0;
@@ -100,12 +101,16 @@ public class LinkedList {
 		temp1 = head;
 		
 		// 입력한 값까지 head부터 찾아감
-		while (--num != 0) {
+		while (--num != 1) {
+			//System.out.println("while: "+num);
+			
 			// 선택한 값의 직전 Node
 			temp1 = temp1.next;
+			//System.out.println("temp1: "+ temp1.data);
 		}
 			// 선택한 값의 Node
 			temp2 = temp1.next;
+			//System.out.println("temp2: "+ temp2.data);
 			
 			// 새로 입력할 Node 생성
 			Node newNode = new Node(insertD);
@@ -117,8 +122,78 @@ public class LinkedList {
 		
 	}
 	
-
 	
+	//---------- 삭제
+	
+	public void NodeDelete() {
+		
+		int num = 0;
+		Node temp1;
+		Node deleteN;
+		
+		// 몇번째를 삭제할 것인지 입력
+		System.out.println("몇번째 노드를 삭제하겠습니까?");
+		Scanner scan = new Scanner(System.in);
+		num = scan.nextInt();
+		
+		if(num==1) {// 첫번째 노드 삭제시 
+			// head의 다음값 담아두기
+			temp1 = head.next;
+			// head 연결 끊기
+			head.next = null;
+			// head 새로 등록
+			head = temp1;
+			
+		}else {// 두번째 노드 이후
+			temp1 = head;
+			// 입력한 값까지 head부터 찾아감
+			while (--num != 1){
+				System.out.println("while: "+num);
+				
+				// 선택한 값의 직전 Node
+				temp1 = temp1.next;
+				System.out.println("temp1: "+ temp1.data);
+			}
+				// 삭제할 Node
+				deleteN = temp1.next;
+				System.out.println("삭제 노드 :"+deleteN.data);
+				// 삭제할 Node 이전의 링크를 삭제할 Node다음으로 연결
+				temp1.next = deleteN.next;
+				
+				// Node삭제
+				deleteN.next = null;
+		}
+	
+			
+	}
+	
+	// -------- 조회
+	
+	public void DataChk() {
+		
+		int num = 0;
+		Node temp1;
+		
+		// 조회할 노드 입력
+		System.out.println("몇번째 노드를 조회하시겠습니까?");
+		Scanner scan = new Scanner(System.in);
+		num = scan.nextInt();
+		
+		temp1 = head;
+		// 입력한 값까지 head부터 찾아감
+		while (--num != 0){
+			//System.out.println("while: "+num);
+			
+			// 선택한 값의 직전 Node
+			temp1 = temp1.next;
+		}
+		System.out.println("Node data: "+ temp1.data);
+		
+		
+	}
+	
+
+
 	
 	
 

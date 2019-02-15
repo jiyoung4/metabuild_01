@@ -1,6 +1,11 @@
 package meta.com;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -56,6 +61,8 @@ public class XMLFiles {
 			Document documentF = util.mkDocument(fPathname);
 			//XML_P
 			Document documentP = util.mkDocument(pPathname);
+			Map<String,Object> pfile = new HashMap<>();
+			pfile = mkPFILE(documentP);
 			
 			try {
 				
@@ -86,7 +93,8 @@ public class XMLFiles {
 								pid = fpidN.getTextContent();
 								
 								// COMMENT에 입력할 LICENSE_ID 찾기
-								String commentLid = findLicenseID(pid, pRowList);
+								//String commentLid = findLicenseID(pid, pRowList);
+								String commentLid = findLicenseID2(pid, pfile);
 								//System.out.println(commentLid);
 								
 								if((commentLid != null)&&(commentLid.compareTo("") != 0)) {// LICENSE_ID가 없는 경우 제외 
@@ -148,6 +156,60 @@ public class XMLFiles {
 		return licenseID;
 		
 	}// findLicenseID() :: END
+	
+	
+	
+	
+	public String findLicenseID2(String fPid, Object pfile) {
+		
+		Map<String,Object> pFile = (Map<String,Object>)pfile;
+		List<String> pidList =  (List<String>) pFile.get("pidList");
+		List<String> lidList =  (List<String>) pFile.get("lidList");
+		String pid = "";
+		String lid = "";
+		
+		for (int i = 0; i < pidList.size(); i++) {
+			pid = pidList.get(i);
+		
+			if(pid.equals(fPid)) {
+				//System.out.println(pid +":::::"+ fPid);
+				lid = pidList.get(i);
+			}
+		
+		}
+		
+		return lid;
+	}
+	
+	public Map<String,Object> mkPFILE(Document documentP) {
+		
+		
+		Map<String, Object> pFiles = new HashMap<>();
+		List<String> pidList = new ArrayList<>();
+		List<String> lidList = new ArrayList<>();
+		
+		try {
+			
+			NodeList pidP = (NodeList) xpath.evaluate("//ROW/P_ID", documentP, XPathConstants.NODESET);
+			NodeList licenseId = (NodeList) xpath.evaluate("//ROW/LICENSE_ID", documentP, XPathConstants.NODESET);
+			
+			for (int i = 0; i < pidP.getLength(); i++) {
+				pidList.add(pidP.item(i).getTextContent());
+				lidList.add(licenseId.item(i).getTextContent());
+			}
+			
+			pFiles.put("pidList", pidList);
+			pFiles.put("lidList", lidList);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pFiles;
+		
+	}
+	
+	
 	
 	
 	/*Node에서 해당 tagName에 해당하는 Node를 추출 : xpath 일부 대체*/

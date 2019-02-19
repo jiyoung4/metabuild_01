@@ -30,7 +30,7 @@ public class MainXML {
 		
 		//System.out.println((end-start)/1000.0 +"초");
 		System.out.println(String.format("%,d",(end-start)) +"ms");
-		System.out.println("Used Memory: "+String.format("%,d", useMemory/1000)+" kbytes");
+		System.out.println("Used Memory: "+String.format("%,d", useMemory/1000)+" kbyte");
 		
 	}
 

@@ -17,7 +17,8 @@ public class MainXML {
 		
 		long end = System.currentTimeMillis();
 		
-		System.out.println((end-start)/1000.0 +"초");
+		//System.out.println((end-start)/1000.0 +"초");
+		System.out.println((end-start) +"ms");
 		
 	}
 

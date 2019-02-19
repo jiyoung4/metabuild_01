@@ -29,7 +29,7 @@ public class XMLFiles {
 	/*FILE_ID 가져오기*/
 	public String[] selectFileId() throws Exception {
 		
-		String basePathname = "C:\\A_XMLFILES\\T_BASEFILE_TB.xml";
+		String basePathname = "D:\\A_XMLFILES\\T_BASEFILE_TB.xml";
 		Document documentBase = util.mkDocument(basePathname);
 		
 		// FILE_ID 가져오기 (NodeList)
@@ -54,8 +54,8 @@ public class XMLFiles {
 		
 		for (int i = 0; i < fileIds.length; i++) {
 		
-			String fPathname = "C:\\A_XMLFILES\\F_"+fileIds[i]+"_TB.xml";
-			String pPathname = "C:\\A_XMLFILES\\P_"+fileIds[i]+"_TB.xml";
+			String fPathname = "D:\\A_XMLFILES\\F_"+fileIds[i]+"_TB.xml";
+			String pPathname = "D:\\A_XMLFILES\\P_"+fileIds[i]+"_TB.xml";
 			
 			//XML_F
 			Document documentF = util.mkDocument(fPathname);
@@ -112,7 +112,7 @@ public class XMLFiles {
 				} // rowsRID for문 : END
 				
 				// 결과 파일 생성
-				xformer.transform(new DOMSource(documentF), new StreamResult(new File("C:\\A_XMLFILES\\result\\T_"+fileIds[i]+"_TB.xml")));
+				xformer.transform(new DOMSource(documentF), new StreamResult(new File("D:\\A_XMLFILES\\result\\T_"+fileIds[i]+"_TB.xml")));
 				
 			} catch (Exception e) {
 				e.printStackTrace();

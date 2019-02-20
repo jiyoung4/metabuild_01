@@ -29,7 +29,7 @@ public class MainXML {
 		
 		try {
 			
-			// FILEID를 찾은 뒤 조건에 맞는 결과 파일 생성하는 메소드 실행
+			// FILE ID를 찾은 뒤 조건에 맞는 결과 파일 생성하는 메소드 실행
 			fileIdsArr = mainXML.selectFileId();
 			mainXML.makeResult(fileIdsArr);
 			
@@ -43,7 +43,7 @@ public class MainXML {
 		
 		long useMemory = (aftUseMemory - preUseMemory);
 		
-		System.out.println(String.format("%,d",(end-start)) +"ms");
+		System.out.println("Time: "+String.format("%,d",(end-start)) +"ms");
 		System.out.println("Used Memory: "+String.format("%,d", useMemory/1000)+" kbyte");
 		
 	}
@@ -72,6 +72,7 @@ public class MainXML {
 		return baseDocument;
 	}
 	
+	
 	/**
 	 * T_BASEFILE_TB.xml에서 모든 FILE_ID를 추출하여
 	 * 배열로 반환하는 메소드
@@ -97,7 +98,6 @@ public class MainXML {
 			
 			return fileIdsArr;
 	}
-	
 	
 	
 	/**

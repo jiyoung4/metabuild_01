@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -21,16 +22,32 @@ import org.w3c.dom.NodeList;
 
 public class XMLFiles {
 	
-	// XPath 생성
 	XPath xpath = XPathFactory.newInstance().newXPath();
-	// Utils 생성
-	Utils util = new Utils();
+
+	
+	/*Document 파일 생성*/
+	private Document mkDocument(String pathname) {
+		
+		File baseXML = new File(pathname);
+		Document baseDocument=null;
+		
+		try {
+			
+			baseDocument = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(baseXML);
+			baseDocument.getDocumentElement().normalize();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return baseDocument;
+	}
 	
 	/*FILE_ID 가져오기*/
-	public String[] selectFileId() throws Exception {
+	private String[] selectFileId() throws Exception {
 		
 		String basePathname = "D:\\A_XMLFILES\\T_BASEFILE_TB.xml";
-		Document documentBase = util.mkDocument(basePathname);
+		Document documentBase = mkDocument(basePathname);
 		
 		// FILE_ID 가져오기 (NodeList)
 		NodeList fileIds = (NodeList) xpath.evaluate("//ROW/FILE_ID", documentBase, XPathConstants.NODESET);
@@ -48,7 +65,7 @@ public class XMLFiles {
 	
 	
 	/*정보 수정 후  파일 생성하기*/
-	public void changeInfo(String[] fileIds) {
+	private void changeInfo(String[] fileIds) {
 		
 		String pid = "";//F_(FILE_ID)_TB.xml 에서의 P_ID
 		
@@ -58,9 +75,9 @@ public class XMLFiles {
 			String pPathname = "D:\\A_XMLFILES\\P_"+fileIds[i]+"_TB.xml";
 			
 			//XML_F
-			Document documentF = util.mkDocument(fPathname);
+			Document documentF = mkDocument(fPathname);
 			//XML_P
-			Document documentP = util.mkDocument(pPathname);
+			Document documentP = mkDocument(pPathname);
 			
 			try {
 				
@@ -124,7 +141,7 @@ public class XMLFiles {
 	
 	
 	/*LICENSE_ID 찾기*/
-	public String findLicenseID(String fPid, NodeList pRowList) throws XPathExpressionException {
+	private String findLicenseID(String fPid, NodeList pRowList) throws XPathExpressionException {
 		String licenseID = "";
 		String pPid = "";
 		
@@ -157,7 +174,7 @@ public class XMLFiles {
 	
 	
 	/*Node에서 해당 tagName에 해당하는 Node를 추출 : xpath 일부 대체*/
-	public Node getNodeByTageName(Node parent, String tagName) {
+	private Node getNodeByTageName(Node parent, String tagName) {
 		
 		Node child = null;
 		NodeList children = parent.getChildNodes();

@@ -2,9 +2,7 @@ package next.com;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 
 /*
  * File을 통해 문자열을 입력받는 기능
@@ -32,9 +30,7 @@ public class FromFile extends Input {
 			line = bufReader.readLine();
 			bufReader.close();
 			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
